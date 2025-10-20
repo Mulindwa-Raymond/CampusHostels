@@ -1,0 +1,410 @@
+/* layout.css - Layout Utilities for Hostel Booking System (React + Vite) */
+
+/* ==========================================================================
+   Layout Utilities - Flexbox and Grid Helpers
+   ========================================================================== */
+
+/* Container - Max-width and centering */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Section - Common padding for sections */
+.section {
+  padding: var(--space-2xl, 3rem) var(--space-md, 1rem);
+  margin-bottom: var(--space-xl, 2rem);
+}
+
+/* Flex Utilities */
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.justify-evenly {
+  justify-content: space-evenly;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.align-stretch {
+  align-items: stretch;
+}
+
+.align-start {
+  align-items: flex-start;
+}
+
+.align-end {
+  align-items: flex-end;
+}
+
+.gap-sm {
+  gap: var(--space-sm, 0.5rem);
+}
+
+.gap-md {
+  gap: var(--space-md, 1rem);
+}
+
+.gap-lg {
+  gap: var(--space-lg, 1.5rem);
+}
+
+.gap-xl {
+  gap: var(--space-xl, 2rem);
+}
+
+/* Grid Utilities */
+.grid {
+  display: grid;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.grid-cols-auto {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.grid-rows-1 {
+  grid-template-rows: repeat(1, 1fr);
+}
+
+.grid-rows-2 {
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.grid-gap-sm {
+  gap: var(--space-sm, 0.5rem);
+}
+
+.grid-gap-md {
+  gap: var(--space-md, 1rem);
+}
+
+.grid-gap-lg {
+  gap: var(--space-lg, 1.5rem);
+}
+
+/* Sidebar Layout - For Dashboard */
+.sidebar-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  color: white;
+  transition: transform var(--transition-base);
+}
+
+.main-content {
+  flex: 1;
+  margin-left: 250px;
+  transition: margin-left var(--transition-base);
+}
+
+.sidebar-collapsed .sidebar {
+  transform: translateX(-100%);
+}
+
+.sidebar-collapsed .main-content {
+  margin-left: 0;
+}
+
+/* Card Grid - For hostels, rooms, bookings */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-lg, 1.5rem);
+  margin-top: var(--space-xl, 2rem);
+}
+
+/* Form Layout - Two-column on desktop */
+.form-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md, 1rem);
+}
+
+.form-layout > * {
+  grid-column: span 1;
+}
+
+.form-layout .full-width {
+  grid-column: span 2;
+}
+
+/* Header/Footer Layout - Full-width with container */
+.page-header,
+.page-footer {
+  width: 100%;
+  background: var(--color-primary);
+  color: white;
+}
+
+.page-header .container,
+.page-footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-lg, 1.5rem) var(--space-md, 1rem);
+}
+
+/* Modal Layout - Centered overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-base);
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background: var(--color-background);
+  padding: var(--space-xl, 2rem);
+  border-radius: var(--border-radius-lg, 20px);
+  max-width: 500px;
+  width: 90%;
+  transform: scale(0.8) translateY(-50px);
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-lg);
+}
+
+.modal-overlay.open .modal-content {
+  transform: scale(1) translateY(0);
+}
+
+/* Search/Filter Layout - Horizontal with wrap */
+.search-layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-lg, 1.5rem);
+  padding: var(--space-xl, 2rem);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  margin: 0 auto;
+  max-width: 1200px;
+  flex-wrap: wrap;
+}
+
+.search-layout .search-bar {
+  display: flex;
+  gap: var(--space-sm, 0.5rem);
+  background: white;
+  padding: var(--space-sm, 0.5rem);
+  border-radius: var(--border-radius-full, 50px);
+  box-shadow: 0 4px 20px rgba(255, 107, 53, 0.1);
+  transition: all var(--transition-base);
+}
+
+.search-layout .search-bar:hover {
+  box-shadow: 0 8px 30px rgba(255, 107, 53, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Tools/Buttons Grid - Responsive button groups */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-lg, 1.5rem);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Stats Grid - Dashboard stats */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-lg, 1.5rem);
+  margin-bottom: var(--space-2xl, 3rem);
+}
+
+/* Table Layout - Responsive table wrapper */
+.table-wrapper {
+  background: white;
+  border-radius: var(--border-radius-lg, 15px);
+  padding: var(--space-xl, 2rem);
+  box-shadow: 0 4px 20px var(--color-shadow);
+  overflow-x: auto;
+  animation: fadeInUp var(--transition-slow);
+}
+
+.table-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-wrapper th,
+.table-wrapper td {
+  padding: var(--space-md, 1rem);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.table-wrapper th {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  color: white;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+}
+
+/* ==========================================================================
+   Responsive Layout Adjustments
+   ========================================================================== */
+
+/* Mobile - Stack most layouts */
+@media (max-width: 768px) {
+  .sidebar-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    transform: none;
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+
+  .form-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .form-layout .full-width {
+    grid-column: span 1;
+  }
+
+  .search-layout {
+    flex-direction: column;
+    gap: var(--space-md, 1rem);
+  }
+
+  .search-layout .search-bar input {
+    width: 100%;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md, 1rem);
+  }
+
+  .tools-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-header .container,
+  .page-footer .container {
+    flex-direction: column;
+    gap: var(--space-md, 1rem);
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .tools-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .table-wrapper {
+    padding: var(--space-md, 1rem);
+  }
+
+  .table-wrapper th,
+  .table-wrapper td {
+    padding: var(--space-sm, 0.5rem);
+    font-size: var(--font-size-sm, 0.875rem);
+  }
+}
+
+/* ==========================================================================
+   Print Layout - Optimized for printing
+   ========================================================================== */
+@media print {
+  .sidebar,
+  .modal-overlay,
+  .navbar,
+  .footer {
+    display: none !important;
+  }
+
+  .main-content {
+    margin-left: 0 !important;
+  }
+
+  .container {
+    max-width: none;
+    padding: 0;
+  }
+
+  .card-grid,
+  .stats-grid {
+    break-inside: avoid;
+  }
+}
+
+/* End of layout.css */

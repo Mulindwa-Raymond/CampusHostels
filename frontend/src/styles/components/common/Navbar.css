@@ -1,0 +1,314 @@
+/* Navbar.css - Orange and White UI Design for Hostel Booking System Navbar */
+
+/* Base Navbar Styles - Fixed top bar with subtle shadow and gradient accent */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: 0 2px 20px rgba(255, 107, 53, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-bottom: 3px solid transparent;
+}
+
+.navbar::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.navbar.scrolled::before {
+  transform: scaleX(1);
+}
+
+/* Logo - Bold, clickable with hover glow */
+.navbar-logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.navbar-logo a {
+  color: #ff6b35;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.navbar-logo a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #ff6b35;
+  transition: width 0.3s ease;
+}
+
+.navbar-logo a:hover::after {
+  width: 100%;
+}
+
+.navbar-logo a:hover {
+  text-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
+  transform: scale(1.05);
+}
+
+/* Desktop Links - Flex layout with smooth hover transitions */
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+}
+
+.navbar-links a,
+.navbar-links .register-btn {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.navbar-links a::before,
+.navbar-links .register-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.navbar-links a:hover::before,
+.navbar-links .register-btn:hover::before {
+  left: 100%;
+}
+
+.navbar-links a:hover,
+.navbar-links .register-btn:hover {
+  color: #ff6b35;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 107, 53, 0.2);
+}
+
+/* Register Button - Special orange outline */
+.navbar-links .register-btn {
+  border: 2px solid #ff6b35;
+  color: #ff6b35;
+  background: transparent;
+}
+
+.navbar-links .register-btn:hover {
+  background: #ff6b35;
+  color: white;
+  border-color: #ff6b35;
+}
+
+/* User Dropdown - Trigger with hover animation */
+.navbar-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.navbar-user {
+  color: #ff6b35;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  background: rgba(255, 107, 53, 0.05);
+}
+
+.navbar-user:hover {
+  background: rgba(255, 107, 53, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Dropdown Content - Animated slide down with fade */
+.navbar-dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: white;
+  min-width: 150px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  z-index: 1001;
+  overflow: hidden;
+  animation: slideDownFade 0.3s ease-out forwards;
+  border: 1px solid rgba(255, 107, 53, 0.1);
+}
+
+@keyframes slideDownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.navbar-dropdown:hover .navbar-dropdown-content {
+  display: block;
+}
+
+.navbar-dropdown-content a,
+.navbar-dropdown-content .logout-btn {
+  display: block;
+  color: #333;
+  padding: 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(255, 107, 53, 0.05);
+}
+
+.navbar-dropdown-content a:hover,
+.navbar-dropdown-content .logout-btn:hover {
+  background: rgba(255, 107, 53, 0.05);
+  color: #ff6b35;
+  padding-left: 1.5rem;
+}
+
+/* Logout Button - Red accent for emphasis */
+.logout-btn {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  color: #ff6b35;
+  font-weight: 500;
+}
+
+/* Mobile Toggle - Hamburger icon with rotation animation */
+.navbar-mobile-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 0.5rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #ff6b35;
+  transition: transform 0.3s ease;
+  z-index: 1002;
+}
+
+.navbar-mobile-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* Mobile Menu - Full overlay slide from right with backdrop blur */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem;
+  }
+
+  .navbar-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 300px;
+    background: white;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 5rem 2rem 2rem;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+  }
+
+  .navbar-links.active {
+    right: 0;
+  }
+
+  .navbar-links a,
+  .navbar-links .register-btn {
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    text-align: left;
+  }
+
+  .navbar-dropdown {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .navbar-dropdown-content {
+    position: static;
+    box-shadow: none;
+    border: none;
+    display: none;
+  }
+
+  .navbar-dropdown:hover .navbar-dropdown-content {
+    display: block;
+  }
+
+  .navbar-mobile-toggle {
+    display: flex;
+  }
+
+  /* Backdrop overlay for mobile menu */
+  .navbar-links.active::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-logo {
+    font-size: 1.5rem;
+  }
+
+  .navbar-links {
+    width: 100%;
+    right: -100%;
+  }
+}
+
+/* Scroll effect listener - Add via JS if needed, but styles for .scrolled class */
+.navbar.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 0.8rem 2rem;
+}
+
+/* Active link indicator */
+.navbar-links a.active {
+  color: #ff6b35;
+  background: rgba(255, 107, 53, 0.1);
+  border-radius: 25px;
+}

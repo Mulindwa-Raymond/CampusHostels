@@ -1,0 +1,365 @@
+/* RoomCard.css - Orange and White UI Design for Hostel Booking System RoomCard */
+
+/* Main Card Container - Compact glassmorphism with hover lift and click feedback */
+.room-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 107, 53, 0.1);
+  position: relative;
+  cursor: pointer;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(10px);
+}
+
+.room-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+
+.room-card:hover::before {
+  transform: scaleX(1);
+}
+
+.room-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(255, 107, 53, 0.15);
+}
+
+/* Click Animation - Subtle press effect on active state */
+.room-card:active {
+  transform: translateY(-5px) scale(0.98);
+  transition: transform 0.1s ease;
+}
+
+/* Info Section - Clean vertical layout with subtle gradients */
+.room-info {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: linear-gradient(180deg, rgba(255, 107, 53, 0.02) 0%, transparent 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.room-info::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.3), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.room-card:hover .room-info::after {
+  opacity: 1;
+}
+
+/* Name - Bold with orange accent and subtle glow on hover */
+.room-name {
+  font-size: 1.4rem;
+  color: #ff6b35;
+  margin: 0;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 3px rgba(255, 107, 53, 0.1);
+}
+
+.room-card:hover .room-name {
+  color: #e55a2b;
+  text-shadow: 0 2px 6px rgba(255, 107, 53, 0.2);
+  transform: translateX(5px);
+}
+
+/* Type - Descriptive with gender color coding */
+.room-type {
+  color: #666;
+  font-size: 0.95rem;
+  margin: 0;
+  font-style: italic;
+  transition: color 0.3s ease;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.room-type::before {
+  content: '🛏️'; /* Bed icon */
+  position: absolute;
+  left: 0;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.room-card:hover .room-type::before {
+  opacity: 1;
+}
+
+.room-card:hover .room-type {
+  color: #555;
+}
+
+/* Gender-specific highlights in type */
+.room-type[data-gender="Male"]::after {
+  content: ' ♂';
+  color: #2196f3;
+  font-weight: bold;
+}
+
+.room-type[data-gender="Female"]::after {
+  content: ' ♀';
+  color: #e91e63;
+  font-weight: bold;
+}
+
+.room-type[data-gender="Unisex"]::after {
+  content: ' ⚧';
+  color: #4caf50;
+  font-weight: bold;
+}
+
+/* Price - Prominent badge with scale animation */
+.room-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ff6b35;
+  margin: 0;
+  background: rgba(255, 107, 53, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  display: inline-block;
+  align-self: flex-start;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(255, 107, 53, 0.1);
+}
+
+.room-card:hover .room-price {
+  background: rgba(255, 107, 53, 0.2);
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.2);
+}
+
+/* Availability - Color-coded with pulse for low stock */
+.room-availability {
+  font-size: 0.9rem;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+  display: inline-block;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.room-availability.available {
+  background: rgba(76, 175, 80, 0.1);
+  color: #4caf50;
+  border: 1px solid rgba(76, 175, 80, 0.2);
+}
+
+.room-availability.fully-booked {
+  background: rgba(244, 67, 54, 0.1);
+  color: #f44336;
+  border: 1px solid rgba(244, 67, 54, 0.2);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.room-card:hover .room-availability {
+  transform: translateY(-2px);
+}
+
+/* Amenities - Icon row with tooltips and hover interactions */
+.room-amenities {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding: 0.5rem 0;
+}
+
+.room-amenities svg {
+  width: 22px;
+  height: 22px;
+  color: #ff6b35;
+  transition: all 0.3s ease;
+  cursor: help;
+  padding: 0.25rem;
+  border-radius: 50%;
+  background: rgba(255, 107, 53, 0.05);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.room-amenities svg:hover {
+  background: rgba(255, 107, 53, 0.15);
+  transform: scale(1.2) rotate(15deg);
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.2);
+}
+
+/* Tooltip for amenities */
+.room-amenities svg::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  margin-bottom: 0.5rem;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.room-amenities svg:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Buttons Section - Stacked or side-by-side with enhanced effects */
+.room-card-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 107, 53, 0.1);
+  flex-wrap: wrap;
+}
+
+.room-card-buttons .button {
+  flex: 1;
+  min-width: 120px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.room-card-buttons .button.primary {
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+  color: white;
+}
+
+.room-card-buttons .button.primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3);
+}
+
+.room-card-buttons .button.primary:disabled {
+  background: rgba(255, 107, 53, 0.3);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.room-card-buttons .button.secondary {
+  background: white;
+  color: #ff6b35;
+  border: 2px solid #ff6b35;
+}
+
+.room-card-buttons .button.secondary:hover {
+  background: rgba(255, 107, 53, 0.05);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.15);
+}
+
+/* Ripple effect on buttons */
+.room-card-buttons .button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.room-card-buttons .button:hover::before {
+  width: 200px;
+  height: 200px;
+}
+
+/* Responsive Design - Stack buttons and adjust spacing on mobile */
+@media (max-width: 768px) {
+  .room-card {
+    min-height: 280px;
+  }
+
+  .room-info {
+    padding: 1rem;
+  }
+
+  .room-name {
+    font-size: 1.2rem;
+  }
+
+  .room-card-buttons {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .room-amenities {
+    justify-content: center;
+  }
+
+  .room-type {
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .room-type::before {
+    position: static;
+    margin-right: 0.5rem;
+  }
+}
+
+/* Fade-in Animation for Grid/List Integration */
+.room-card {
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

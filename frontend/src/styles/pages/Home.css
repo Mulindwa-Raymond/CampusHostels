@@ -1,0 +1,382 @@
+/* Home.css - Orange and White UI Design for Hostel Booking System */
+
+/* Global Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+}
+
+.home-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fff 0%, #fffaf0 100%);
+  overflow-x: hidden;
+}
+
+/* Header Section - Enhanced with subtle animation */
+header {
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+  color: white;
+  text-align: center;
+  padding: 4rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="%23ffffff" opacity="0.1"><polygon points="0,100 1000,0 1000,100"/></svg>') no-repeat center/cover;
+  animation: wave 20s linear infinite;
+}
+
+@keyframes wave {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+header h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  animation: fadeInUp 1s ease-out;
+}
+
+header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Search and Filter Section - Clean, floating layout with smooth focus effects */
+.search-filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  margin: 0 auto;
+  max-width: 1200px;
+  flex-wrap: wrap;
+}
+
+.search-bar {
+  display: flex;
+  gap: 1rem;
+  background: white;
+  padding: 0.5rem;
+  border-radius: 50px;
+  box-shadow: 0 4px 20px rgba(255, 107, 53, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-bar:hover {
+  box-shadow: 0 8px 30px rgba(255, 107, 53, 0.2);
+  transform: translateY(-2px);
+}
+
+.search-bar input {
+  border: none;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  outline: none;
+  border-radius: 50px;
+  width: 300px;
+  background: transparent;
+}
+
+.search-bar input::placeholder {
+  color: #999;
+}
+
+.search-bar button {
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.search-bar button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+}
+
+.university-filter {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: white;
+  padding: 1rem 1.5rem;
+  border-radius: 25px;
+  box-shadow: 0 4px 20px rgba(255, 107, 53, 0.1);
+  transition: all 0.3s ease;
+}
+
+.university-filter:hover {
+  box-shadow: 0 6px 25px rgba(255, 107, 53, 0.15);
+}
+
+.university-filter label {
+  font-weight: 600;
+  color: #ff6b35;
+}
+
+.university-filter select {
+  border: none;
+  padding: 0.5rem;
+  font-size: 1rem;
+  background: transparent;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Section Styles - Consistent with fade-in animations */
+section {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+section h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: #ff6b35;
+  position: relative;
+}
+
+section h2::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+  margin: 1rem auto 0;
+  border-radius: 2px;
+  animation: expand 0.6s ease-out;
+}
+
+@keyframes expand {
+  from { width: 0; }
+  to { width: 80px; }
+}
+
+/* Hostels and Rooms Lists - Grid layout with card hover effects */
+.hostels-list, .rooms-list, .bookings-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.hostels-list > *, .rooms-list > *, .bookings-list > * {
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.hostels-list > *:nth-child(1), .rooms-list > *:nth-child(1), .bookings-list > *:nth-child(1) { animation-delay: 0.1s; }
+.hostels-list > *:nth-child(2), .rooms-list > *:nth-child(2), .bookings-list > *:nth-child(2) { animation-delay: 0.2s; }
+.hostels-list > *:nth-child(3), .rooms-list > *:nth-child(3), .bookings-list > *:nth-child(3) { animation-delay: 0.3s; }
+.hostels-list > *:nth-child(4), .rooms-list > *:nth-child(4), .bookings-list > *:nth-child(4) { animation-delay: 0.4s; }
+
+/* Assume cards have base styles; enhance with orange accents */
+.hostel-card, .room-card, .booking-card {
+  background: white;
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 107, 53, 0.1);
+  overflow: hidden;
+  position: relative;
+}
+
+.hostel-card::before, .room-card::before, .booking-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.hostel-card:hover::before, .room-card:hover::before, .booking-card:hover::before {
+  transform: scaleX(1);
+}
+
+.hostel-card:hover, .room-card:hover, .booking-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(255, 107, 53, 0.15);
+}
+
+/* Tools Section - Button grid with ripple effect simulation */
+.tools-section {
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, rgba(255, 140, 66, 0.05) 100%);
+  text-align: center;
+}
+
+.tools-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.tools-buttons button {
+  background: white;
+  color: #ff6b35;
+  border: 2px solid #ff6b35;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.tools-buttons button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 107, 53, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.tools-buttons button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.tools-buttons button:hover {
+  background: #ff6b35;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+}
+
+/* Empty States - Styled with subtle animations */
+p[class*="no"] {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #999;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+/* Error Handling */
+.error {
+  text-align: center;
+  color: #ff6b35;
+  font-size: 1.2rem;
+  padding: 2rem;
+  background: rgba(255, 107, 53, 0.1);
+  border-radius: 10px;
+  margin: 2rem;
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .search-filter {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .search-bar input {
+    width: 100%;
+  }
+
+  header h1 {
+    font-size: 2rem;
+  }
+
+  section {
+    padding: 2rem 1rem;
+  }
+
+  .hostels-list, .rooms-list, .bookings-list {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .tools-buttons {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .tools-buttons {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Loading Overlay - If Loader component uses this */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
